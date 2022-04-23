@@ -1,0 +1,86 @@
+{
+  "id": "2952116",
+  "name": "bysj",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1831575",
+      "name": "我的订单",
+      "font_class": "wodedingdan",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "667792",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "e6ad",
+      "unicode_decimal": 59053
+    },
+    {
+      "icon_id": "2811146",
+      "name": "待收货",
+      "font_class": "daishouhuo",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "6776389",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "eca7",
+      "unicode_decimal": 60583
+    },
+    {
+      "icon_id": "7090062",
+      "name": "售后",
+      "font_class": "shouhou",
+      "unicode": "e713",
+      "unicode_decimal": 59155
+    },
+    {
+      "icon_id": "9452511",
+      "name": "待支付",
+      "font_class": "daizhifu-",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "386337",
+      "name": "叉",
+      "font_class": "delete",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "5387913",
+      "name": "按钮-箭头向右_o",
+      "font_class": "youjiantou",
+      "unicode": "eb8c",
+      "unicode_decimal": 60300
+    },
+    {
+      "icon_id": "551615",
+      "name": "五角星",
+      "font_class": "star",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "5383657",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e782",
+      "unicode_decimal": 59266
+    },
+    {
+      "icon_id": "7542712",
+      "name": "24gl-cartFull9",
+      "font_class": "gouwuche",
+      "unicode": "e87a",
+      "unicode_decimal": 59514
+    }
+  ]
+}

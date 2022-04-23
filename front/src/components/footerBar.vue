@@ -17,7 +17,7 @@
         <div class="title">友情链接</div>
         <div class="item">
           <div class="case">后台管理系统</div>
-          <div class="case">当当网</div>
+          <div class="case">SHOPPING网</div>
           <div class="case">问题反馈</div>
           <div class="case">github地址</div>
         </div>
@@ -40,7 +40,6 @@
  .footer {
     background: #ffffff;
     border-top: 2px solid #ff2832;
-    // margin-top: 20px;
     .footer-container {
       width: 1200px;
       margin: 0 auto;

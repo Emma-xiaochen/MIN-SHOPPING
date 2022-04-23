@@ -87,6 +87,7 @@ const create = (utils, model, Counter) => {
       const menuData = ctx.request.body
 
       try {
+        // key 就是设置一个字段为唯一的，比如user要设置loginname唯一，product要设置productName唯一
         const res = await model.findOne({ [key]: menuData[key] }, 'id')
         if (res) {
           // 1.是否 key 已存在

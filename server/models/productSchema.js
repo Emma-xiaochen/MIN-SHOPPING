@@ -6,6 +6,7 @@ const productSchema = mongoose.Schema({
     'productStatus': Boolean,
     'productSketch': String,
     'productDetail': String,
+    'productDetailHTML': String,
     'productPrice': Number,
     'productType': String,
     'productCounts': Number,

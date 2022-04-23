@@ -148,7 +148,6 @@
     components: { navBar, footerBar },
     methods: {
       goHome() {
-        console.log(1);
         this.$router.push({name: 'home'});
       }
     }

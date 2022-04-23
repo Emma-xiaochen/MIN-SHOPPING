@@ -6,11 +6,11 @@
       <div class="head">搜索结果：</div>
       <div class="list">
         <template v-if="listData.length">
-          <div class="item" @click="goDetail" v-for="(item, index) in listData" :key="index">
-            <img :src="item.src" alt="图片无法查看"  class="item-img">
-            <div class="item-title">{{ item.title }}</div>
-            <div class="item-author">{{ item.author }}</div>
-            <div class="item-price">{{ item.price | numberToString }}</div>
+          <div class="item" @click="goDetail(item.id)" v-for="(item, index) in listData" :key="index">
+            <img :src="item.productImg1" alt="图片无法查看"  class="item-img">
+            <div class="item-title">{{ item.productName }}</div>
+            <div class="item-money">库存量：{{ item.productCounts }}</div>
+            <div class="item-price">{{ item.productPrice | numberToString }}</div>
           </div>
         </template>
         <template v-else>
@@ -26,6 +26,7 @@
   import navBar from '@/components/navBar'
   import searchBar from '@/components/searchBar'
   import footerBar from '@/components/footerBar'
+  import api from '@/api/index'
 
   export default {
     components: {
@@ -35,80 +36,8 @@
     },
     data() {
       return {
-        listData: [
-          {
-            src: require('@/assets/images/wen1.png'),
-            title: '人间清醒',
-            author: '梁晓声',
-            price: 28.00
-          },
-          {
-            src: require('@/assets/images/wen2.png'),
-            title: '花香拦路',
-            author: '张丽钧',
-            price: 33.60
-          },
-          {
-            src: require('@/assets/images/wen3.png'),
-            title: '你听懂了没有',
-            author: '戴建业·果麦文化',
-            price: 34.00
-          },
-          {
-            src: require('@/assets/images/wen4.png'),
-            title: '老舍：人间这出戏',
-            author: '老舍',
-            price: 22.50
-          },
-          {
-            src: require('@/assets/images/wen1.png'),
-            title: '人间清醒',
-            author: '梁晓声',
-            price: 28.00
-          },
-          {
-            src: require('@/assets/images/wen2.png'),
-            title: '花香拦路',
-            author: '张丽钧',
-            price: 33.60
-          },
-          {
-            src: require('@/assets/images/wen3.png'),
-            title: '你听懂了没有',
-            author: '戴建业·果麦文化',
-            price: 34.00
-          },
-          {
-            src: require('@/assets/images/wen4.png'),
-            title: '老舍：人间这出戏',
-            author: '老舍',
-            price: 22.50
-          },
-          {
-            src: require('@/assets/images/wen1.png'),
-            title: '人间清醒',
-            author: '梁晓声',
-            price: 28.00
-          },
-          {
-            src: require('@/assets/images/wen2.png'),
-            title: '花香拦路',
-            author: '张丽钧',
-            price: 33.60
-          },
-          {
-            src: require('@/assets/images/wen3.png'),
-            title: '你听懂了没有',
-            author: '戴建业·果麦文化',
-            price: 34.00
-          },
-          {
-            src: require('@/assets/images/wen4.png'),
-            title: '老舍：人间这出戏',
-            author: '老舍',
-            price: 22.50
-          }
-        ]
+        listData: [],
+        key: ''
       }
     },
     filters: {
@@ -117,13 +46,33 @@
         return `￥${value.toFixed(2)}`;
       }
     },
+    watch: {
+      // 搜索 在搜索页触发的
+      '$route.query.key' (newValue, oldValue) {
+        api.getProductList({
+          currentPage: 1, 
+          pageSize: 30, 
+          productName: newValue
+        }).then((res) => {
+          this.listData = res.data.data;
+        })
+      }
+    },
     mounted(){
-      console.log('this.$route.query.key:', this.$route.query.key)
+      // 搜索 发起根据搜索key查询商品
+      const key = this.$route.query.key;
+      api.getProductList({
+         currentPage: 1, 
+        pageSize: 30, 
+        productName: key
+      }).then((res) => {
+        this.listData = res.data.data;
+      })
     },
     methods: {
-      goDetail() {
-        this.$router.push({ name: 'goodsDetail' });
-      }
+      goDetail(id) {
+        this.$router.push({ name: 'goodsDetail', query: {id}});
+      },
     }
   }
 </script>
@@ -132,6 +81,7 @@
   .search {
     .container {
       width: 1200px;
+      min-height: 600px;
       margin: 0 auto;
       margin-bottom: 10px;
       .head {
@@ -160,13 +110,17 @@
           }
           .item-title {
             color: #000000;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 0 10px;
           }
           .item-img {
             width: 200px;
             height: 200px;
             margin: 40px 0;
           }
-          .item-author {
+          .item-money {
             font-size: 13px;
             color: #6e6e6e;
             margin: 5px 0;

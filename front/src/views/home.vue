@@ -10,7 +10,7 @@
         </div>
         <div class="list">
          <div class="list-container">
-            <div class="list-item" @click="goDetail" v-for="(item, index) in likeList" :key="index">
+            <div class="list-item" @click="goDetail(item.id)" v-for="(item, index) in likeList" :key="index">
               <img class="item-img" :src="item.productImg1" alt="">
               <div class="item-title">{{item.productName}}</div>
               <div class="item-star">
@@ -31,7 +31,7 @@
             <img src="~@/assets/images/wenxue.png" alt="" @click="goDetail">
           </div>
           <div class="produce">
-            <div class="item" @click="goDetail" v-for="(item, index) in socialScienceList" :key="index">
+            <div class="item" @click="goDetail(item.id)" v-for="(item, index) in socialScienceList" :key="index">
               <img class="item-img" :src="item.productImg1" alt="">
               <div class="item-title">{{ item.productName }}</div>
               <div class="item-author">库存量：{{ item.productCounts }}</div>
@@ -50,7 +50,7 @@
             <img src="~@/assets/images/wenxue.png" alt="" @click="goDetail">
           </div>
           <div class="produce">
-            <div class="item" @click="goDetail" v-for="(item, index) in historyList" :key="index">
+            <div class="item" @click="goDetail(item.id)" v-for="(item, index) in historyList" :key="index">
               <img class="item-img" :src="item.productImg1" alt="">
               <div class="item-title">{{ item.productName }}</div>
               <div class="item-author">库存量：{{ item.productCounts }}</div>
@@ -77,156 +77,9 @@
     },
     data() {
       return {
-        likeList: [
-          {
-            productImg1: require('@/assets/images/book.png'),
-            productName: '0次与10000次:如何创造全新的人生',
-            star: 5,
-            productPrice: 29.90
-          },
-          {
-            productImg1: require('@/assets/images/book.png'),
-            productName: '0次与10000次:如何创造全新的人生',
-            star: 5,
-            productPrice: 29.90
-          },
-          {
-            productImg1: require('@/assets/images/book.png'),
-            productName: '0次与10000次:如何创造全新的人生',
-            star: 5,
-            productPrice: 29.90
-          },
-          {
-            productImg1: require('@/assets/images/book.png'),
-            productName: '0次与10000次:如何创造全新的人生',
-            star: 5,
-            productPrice: 29.90
-          },
-          {
-            productImg1: require('@/assets/images/book.png'),
-            productName: '0次与10000次:如何创造全新的人生',
-            star: 5,
-            productPrice: 29.90
-          },
-          {
-            productImg1: require('@/assets/images/book.png'),
-            productName: '0次与10000次:如何创造全新的人生',
-            star: 5,
-            productPrice: 29.90
-          },
-          {
-            productImg1: require('@/assets/images/book.png'),
-            productName: '0次与10000次:如何创造全新的人生',
-            star: 5,
-            productPrice: 29.90
-          },
-          {
-            productImg1: require('@/assets/images/book.png'),
-            productName: '0次与10000次:如何创造全新的人生',
-            star: 5,
-            productPrice: 29.90
-          },
-        ],
-        socialScienceList: [
-          {
-            productImg1: require('@/assets/images/wen1.png'),
-            productName: '人间清醒',
-            author: '梁晓声',
-            price: 28.00
-          },
-          {
-            productImg1: require('@/assets/images/wen2.png'),
-            productName: '花香拦路',
-            author: '张丽钧',
-            price: 33.60
-          },
-          {
-            productImg1: require('@/assets/images/wen3.png'),
-            productName: '你听懂了没有',
-            author: '戴建业·果麦文化',
-            price: 34.00
-          },
-          {
-            productImg1: require('@/assets/images/wen4.png'),
-            productName: '老舍：人间这出戏',
-            author: '老舍',
-            price: 22.50
-          },
-          {
-            productImg1: require('@/assets/images/wen1.png'),
-            productName: '人间清醒',
-            author: '梁晓声',
-            price: 28.00
-          },
-          {
-            productImg1: require('@/assets/images/wen2.png'),
-            productName: '花香拦路',
-            author: '张丽钧',
-            price: 33.60
-          },
-          {
-            productImg1: require('@/assets/images/wen3.png'),
-            productName: '你听懂了没有',
-            author: '戴建业·果麦文化',
-            price: 34.00
-          },
-          {
-            productImg1: require('@/assets/images/wen4.png'),
-            productName: '老舍：人间这出戏',
-            author: '老舍',
-            price: 22.50
-          }
-        ],
-        historyList:[
-          {
-            productImg1: require('@/assets/images/wen1.png'),
-            productName: '人间清醒',
-            author: '梁晓声',
-            price: 28.00
-          },
-          {
-            productImg1: require('@/assets/images/wen2.png'),
-            productName: '花香拦路',
-            author: '张丽钧',
-            price: 33.60
-          },
-          {
-            productImg1: require('@/assets/images/wen3.png'),
-            productName: '你听懂了没有',
-            author: '戴建业·果麦文化',
-            price: 34.00
-          },
-          {
-            productImg1: require('@/assets/images/wen4.png'),
-            productName: '老舍：人间这出戏',
-            author: '老舍',
-            price: 22.50
-          },
-          {
-            productImg1: require('@/assets/images/wen1.png'),
-            productName: '人间清醒',
-            author: '梁晓声',
-            price: 28.00
-          },
-          {
-            productImg1: require('@/assets/images/wen2.png'),
-            productName: '花香拦路',
-            author: '张丽钧',
-            price: 33.60
-          },
-          {
-            productImg1: require('@/assets/images/wen3.png'),
-            productName: '你听懂了没有',
-            author: '戴建业·果麦文化',
-            price: 34.00
-          },
-          {
-            productImg1: require('@/assets/images/wen4.png'),
-            productName: '老舍：人间这出戏',
-            author: '老舍',
-            price: 22.50
-          }
-        ]
+        likeList: [],
+        socialScienceList: [],
+        historyList:[]
       }
     },
     computed: {
@@ -249,24 +102,37 @@
         pageSize: 30
       }).then(res => {
         console.log('res:', res)
-        // if (res.data.length) {
-        //   this.likeList = res.data.map(item => {
-        //     // 随机星星
-        //     let stars = parseInt(Math.random()*10 + 1);
-        //     item.star = stars >= 5 ? 5 : stars;
-        //     return item;
-        //   })
-        //   this.socialScienceList = res.data.filter(i => i.productType === '人文社科')
-        //   this.historyList = res.data.filter(i => i.productType === '历史')
-        // }
+        if (res.data.data.length) {
+          // 猜你喜欢
+          // 1. 随机生成四个数，18 5 7 10 12 index1 index2 index3 index4
+          // this.likeList = [ res.data.data[index1], res.data.data[index2], res.data.data[index3], res.data.data[index4] ].map(item => {
+          //   // 随机星星
+          //   let stars = parseInt(Math.random()*10 + 1);
+          //   item.star = stars >= 5 ? 5 : stars;
+          //   return item;
+          // })
+          // this.likeList = res.data.data.map(item => {
+          //   // 随机星星
+          //   let stars = parseInt(Math.random()*10 + 1);
+          //   item.star = stars >= 5 ? 5 : stars;
+          //   return item;
+          // })
+          this.likeList = res.data.data.slice(0,5);
+
+          // 人文社科
+          this.socialScienceList = res.data.data.filter(i => i.productType === '人文社科')
+          // 历史
+          this.historyList = res.data.data.filter(i => i.productType === '历史')
+        }
       })
     },
     methods: {
       gotoCart() {
+        console.log();
         this.$router.push('/myCart');
       },
-      goDetail() {
-        this.$router.push({name: 'goodsDetail'});
+      goDetail(id) {
+        this.$router.push({name: 'goodsDetail', query: {id}});
       }
     }
   }
@@ -322,12 +188,12 @@
               cursor: pointer;
               .item-title {
                 width: 105px;
+                font-size: 13px;
                 color: #000000;
                 margin: 0 auto;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                font-size: 13px;
               }
               .item-star {
                 color: #c4c4c4;
@@ -378,7 +244,7 @@
             flex-wrap: wrap;
             .item {
               width: 230px;
-              height: 335px;
+              height: 295px;
               text-align: center;
               text-decoration: none;
               box-shadow: 0 0 10px rgba(0, 0, 0, .1);
@@ -391,13 +257,17 @@
                 box-shadow: 0 0 40px rgba(0, 0, 0, 0.2)
               }
               .item-title {
+                font-size: 14px;
                 color: #000000;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
+                padding: 0 10px;
               }
               .item-img {
-                margin: 20px 0;
+                width: 80%;
+                height: 170px;
+                margin: 15px 0;
               }
               .item-author {
                 font-size: 13px;

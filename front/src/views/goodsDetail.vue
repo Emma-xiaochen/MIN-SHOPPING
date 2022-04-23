@@ -7,14 +7,14 @@
       <div class="content">
         <div class="top">
           <div class="fl">
-            <img src="@/assets/images/detail.png" alt="">
+            <img :src="detailData.productImg1">
           </div>
           <div class="fr">
-            <div class="name">0次与10000次：如何创造全新的人生脚本</div>
-            <div class="des">德国心理学家教你告别同样的坏感受、同样的错误、同样的创伤，拥有保护自己不受伤害的能力。探查我们内在的习惯性的应对方式，积极修正，创造新的人生脚本。</div>
-            <div class="price">价格：<div class="num">￥29.90</div></div>
+            <div class="name">{{ detailData.productName }}</div>
+            <div class="des">{{ detailData.productSketch }}</div>
+            <div class="price">价格：<div class="num">￥{{ numberToString(detailData.productPrice) }}</div></div>
             <div class="number">
-              <div class="title">库存量：9999</div>
+              <div class="title">库存量：{{ detailData.productCounts }}</div>
             </div>
             <div class="place">发货地：<div class="locale">深圳</div></div>
             <div class="shop">
@@ -25,7 +25,7 @@
         </div>
         <div class="bottom">
           <div class="class"><div class="title">商品详情</div></div>
-          <div class="main">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quidem nesciunt accusamus possimus saepe quia, fugiat modi incidunt sint. Nostrum vitae delectus ratione cumque laudantium. Amet perspiciatis ex dolores a.</div>
+          <div class="main">{{ detailData.productDetail }}</div>
         </div>
       </div>
     </div>
@@ -37,12 +37,40 @@
   import navBar from '@/components/navBar'
   import searchBar from '@/components/searchBar'
   import footerBar from '@/components/footerBar'
+  import api from '@/api/index.js'
 
   export default {
+    data () {
+      return {
+        detailData: [],
+        id: ''
+      }
+    },
     components: {
       navBar,
       searchBar,
       footerBar
+    },
+    computed: {
+      numberToString() {
+        return (price) => {
+          if(!price) return '';
+          return price.toFixed(2);
+        }
+      }
+    },
+    mounted() {
+      this.getGoodDetail();
+    },
+    methods: {
+      getGoodDetail() {
+        this.id = this.$route.query.id
+        console.log('id=>', this.id);
+        api.getProductDetail({id: this.id}).then((res) => {
+          this.detailData = res.data;
+          console.log('this.detailData=>', this.detailData);
+        })
+      }
     }
   }
 </script>
@@ -76,6 +104,7 @@
         }
         .fr {
           padding: 30px 0;
+          position: relative;
           .name {
             font-size: 26px;
             font-weight: bold;
@@ -141,6 +170,9 @@
             }
           }
           .shop {
+            position: absolute;
+            left: 0;
+            bottom: 45px;
             .add-car,
             .buy {
               display: inline-block;
@@ -174,6 +206,7 @@
       }
       .bottom {
         min-height: 600px;
+        margin: 10px 0;
         .class {
           height: 41px;
           line-height: 41px;

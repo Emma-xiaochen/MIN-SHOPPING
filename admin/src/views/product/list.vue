@@ -215,7 +215,10 @@ export default {
       this.height = !isFullScreen
     },
     onChange (value, render) {
-      this.form.productDetail = render
+      // MD格式 - 用于后台编辑
+      this.$set(this.form, 'productDetail', value)
+      // HTML格式 - 用于购物网站显示
+      this.$set(this.form, 'productDetailHTML', render)
     },
     closed () {
       this.form = {};

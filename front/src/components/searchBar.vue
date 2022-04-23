@@ -33,13 +33,20 @@
       },
       goSearch(key) {
         if (key) {
+          console.log('key=>', key);
           this.$router.push({name: 'search', query: {key}});
         } else {
           this.$router.push({name: 'home'});
         }
       },
       gotoCart() {
-        this.$router.push('/myCart');
+        let token = localStorage.getItem('token')
+        console.log(token)
+        if(token === null) {
+          this.$router.push('/login');
+        } else {
+          this.$router.push('/myCart');
+        }
       }
     }
   }
